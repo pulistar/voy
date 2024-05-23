@@ -1,30 +1,18 @@
-
-
-
 import axios from 'axios';
 
-const URL =
-  process.env.NODE_ENV === 'production'
-    ? import.meta.env.VITE_BACKEND_URL
-    : 'https://saludbienestar.azurewebsites.net';
+// Define la URL del backend
+const backendURL = 'https://saludbienestar.azurewebsites.net';
 
-console.log(`API URL: ${URL}/api/ali/alimentacion/`);
+console.log(`API URL: ${backendURL}/api/ali/alimentacion/`);
 
+// Crea una instancia de Axios con la URL base configurada
 const alimentacionesApi = axios.create({
-  baseURL: `${URL}/api/ali/alimentacion/`,
+  baseURL: `${backendURL}/api/ali/alimentacion/`,
 });
 
-
-
-
+// Define las funciones para interactuar con la API
 export const getAllAlimentaciones = () => alimentacionesApi.get('/');
-
 export const getAlimentacion = (id) => alimentacionesApi.get(`/${id}`);
-
 export const createAlimentacion = (alimentacion) => alimentacionesApi.post('/', alimentacion);
-
 export const updateAlimentacion = (id, alimentacion) => alimentacionesApi.put(`/${id}/`, alimentacion);
-
 export const deleteAlimentacion = (id) => alimentacionesApi.delete(`/${id}`);
-
-
